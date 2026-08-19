@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kabir Kalra — Applied AI &amp; Data Science</title>
+<meta name="description" content="Kabir Kalra — M.S. Business Analytics &amp; Artificial Intelligence, Johns Hopkins Carey. Reinforcement learning agents, multi-agent LLM systems, and evaluation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        base:    '#080B14',
+        surface: '#0F1420',
+        raised:  '#161C2B',
+        edge:    '#232B3D',
+        muted:   '#8B95AC',
+        soft:    '#C3CAD9',
+        amber:   '#F5B841',
+        amberdim:'#B8860F',
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'ui-monospace', 'monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  body { background-color:#080B14; }
+  .grid-bg{
+    background-image:linear-gradient(rgba(35,43,61,.5) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(35,43,61,.5) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+  }
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  ::selection{background:#F5B841;color:#080B14}
+</style>
+</head>
+
+<body class="font-sans text-soft antialiased">
+
+<!-- ================= NAV ================= -->
+<nav class="fixed top-0 inset-x-0 z-50 border-b border-edge/70 bg-base/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
+    <a href="#top" class="font-mono text-xs tracking-[0.18em] text-white uppercase">Kabir Kalra</a>
+    <div class="hidden gap-7 md:flex">
+      <a href="#about"    class="font-mono text-[11px] uppercase tracking-[0.12em] text-muted transition hover:text-amber">About</a>
+      <a href="#skills"   class="font-mono text-[11px] uppercase tracking-[0.12em] text-muted transition hover:text-amber">Skills</a>
+      <a href="#projects" class="font-mono text-[11px] uppercase tracking-[0.12em] text-muted transition hover:text-amber">Projects</a>
+      <a href="#contact"  class="font-mono text-[11px] uppercase tracking-[0.12em] text-muted transition hover:text-amber">Contact</a>
+    </div>
+    <a href="#contact" class="rounded-sm border border-amber px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-amber transition hover:bg-amber hover:text-base">Get in touch</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="top" class="relative overflow-hidden pt-32 pb-20 sm:pt-44 sm:pb-28">
+  <div class="grid-bg pointer-events-none absolute inset-0"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="flex flex-col-reverse items-start gap-8 md:flex-row md:items-center md:justify-between md:gap-12">
+      <div class="min-w-0 flex-1">
+        <p class="mb-7 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+          Washington, DC <span class="text-amber">/</span> Available immediately <span class="text-amber">/</span> STEM OPT eligible
+        </p>
+
+        <h1 class="font-display text-[clamp(2.6rem,9vw,6rem)] font-700 leading-[0.92] tracking-[-0.035em] text-white">
+          I build agents<br>
+          that <span class="text-amber">prove</span><br>
+          they work.
+        </h1>
+
+        <p class="mt-8 max-w-xl text-lg leading-relaxed text-soft sm:text-xl">
+          M.S. in Business Analytics &amp; Artificial Intelligence from Johns Hopkins Carey.
+          I build reinforcement learning agents and multi-agent LLM systems &mdash;
+          and the evaluation harnesses that show whether they're actually any good.
+        </p>
+      </div>
+
+      <div class="shrink-0">
+        <div class="relative h-32 w-32 sm:h-40 sm:w-40 md:h-56 md:w-56">
+          <div class="absolute -inset-1 rounded-full border border-amber/30"></div>
+          <img src="kabir.jpg" alt="Kabir Kalra"
+               class="h-full w-full rounded-full object-cover object-center ring-1 ring-edge">
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="mailto:kabirkalra07@gmail.com"
+         class="rounded-sm bg-amber px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-base transition hover:bg-white">Email me</a>
+      <a href="https://www.linkedin.com/in/kabir-kalra-b852b6211/" target="_blank" rel="noopener"
+         class="rounded-sm border border-edge px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-soft transition hover:border-amber hover:text-amber">LinkedIn</a>
+      <a href="https://github.com/kabirkalra07-maker" target="_blank" rel="noopener"
+         class="rounded-sm border border-edge px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-soft transition hover:border-amber hover:text-amber">GitHub</a>
+    </div>
+
+    <!-- headline metrics -->
+    <div class="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded border border-edge bg-edge sm:grid-cols-4">
+      <div class="bg-surface p-5">
+        <p class="font-display text-3xl font-700 text-amber">0%</p>
+        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Tool hallucination<br>down from 34%</p>
+      </div>
+      <div class="bg-surface p-5">
+        <p class="font-display text-3xl font-700 text-amber">8.1<span class="text-lg text-muted">/10</span></p>
+        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Mean judge score<br>55-case eval suite</p>
+      </div>
+      <div class="bg-surface p-5">
+        <p class="font-display text-3xl font-700 text-amber">$0.018</p>
+        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Cost per<br>agent run</p>
+      </div>
+      <div class="bg-surface p-5">
+        <p class="font-display text-3xl font-700 text-amber">~20%</p>
+        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Client engagement<br>growth, LA Sovereign</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="border-t border-edge py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="reveal grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-amber">About</p>
+        <h2 class="mt-4 font-display text-3xl font-700 leading-tight tracking-tight text-white sm:text-4xl">
+          Analytics training,<br>engineering habits.
+        </h2>
+      </div>
+
+      <div class="space-y-5 text-base leading-relaxed sm:text-lg">
+        <p>
+          I finished my M.S. in Business Analytics and Artificial Intelligence at Johns Hopkins Carey in July 2026.
+          Most of my graduate work sat in applied AI &mdash; designing MDPs, wiring up multi-agent pipelines,
+          and building the eval suites that tell you when a change actually helped.
+        </p>
+        <p>
+          Before Hopkins, I ran business development at an electric bicycle manufacturer in Ludhiana. I led a
+          seven-person team, ran a Volza-based analysis across 120 buyers and suppliers to reset pricing and
+          positioning, and supported a concept-to-prototype launch in six months. That work is why I care less
+          about a clever model and more about whether anyone can tell if it's working.
+        </p>
+        <p>
+          I've also taught &mdash; TA for Strategic Market Intelligence across four sections of roughly 150 students,
+          and 12+ applied AI sessions for 50+ members of the Carey AI Student Club. Explaining a system to
+          someone who won't read the code is most of the job.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-edge pt-6 font-mono text-xs text-muted">
+          <span><span class="text-amber">&rsaquo;</span> M.S. Johns Hopkins Carey &mdash; 2026</span>
+          <span><span class="text-amber">&rsaquo;</span> B.Sc. Manchester &mdash; 3.61/4.0</span>
+          <span><span class="text-amber">&rsaquo;</span> UW Foster &mdash; study abroad</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="border-t border-edge py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="reveal">
+      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-amber">Skills</p>
+      <h2 class="mt-4 font-display text-3xl font-700 tracking-tight text-white sm:text-4xl">Toolkit</h2>
+    </div>
+
+    <div class="reveal mt-12 grid gap-px overflow-hidden rounded border border-edge bg-edge sm:grid-cols-2 lg:grid-cols-4">
+
+      <div class="bg-surface p-6">
+        <h3 class="font-mono text-[11px] uppercase tracking-[0.14em] text-amber">Languages &amp; tools</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>Python</li><li>SQL</li><li>R (RStudio)</li><li>Power BI</li><li>Excel (Advanced)</li>
+        </ul>
+      </div>
+
+      <div class="bg-surface p-6">
+        <h3 class="font-mono text-[11px] uppercase tracking-[0.14em] text-amber">Python stack</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>pandas</li><li>NumPy</li><li>scikit-learn</li><li>Matplotlib</li><li>Seaborn</li>
+        </ul>
+      </div>
+
+      <div class="bg-surface p-6">
+        <h3 class="font-mono text-[11px] uppercase tracking-[0.14em] text-amber">ML &amp; AI</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>Reinforcement learning</li><li>Generative AI</li><li>LLM APIs</li>
+          <li>Prompt engineering</li><li>LLM-as-a-Judge evaluation</li>
+        </ul>
+      </div>
+
+      <div class="bg-surface p-6">
+        <h3 class="font-mono text-[11px] uppercase tracking-[0.14em] text-amber">Applied</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>Statistical modeling</li><li>Predictive modeling</li><li>Data visualization</li>
+          <li>Data storytelling</li><li>Stakeholder communication</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="reveal mt-6 font-mono text-[11px] text-muted">
+      Languages: English (advanced) &middot; Hindi (native) &middot; Mandarin Chinese (basic)
+      &nbsp;&nbsp;|&nbsp;&nbsp; AI Foundations Knowledge Badge &mdash; Anthropic
+    </p>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="border-t border-edge py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="reveal flex flex-wrap items-baseline justify-between gap-4">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-amber">Projects</p>
+        <h2 class="mt-4 font-display text-3xl font-700 tracking-tight text-white sm:text-4xl">Things I built and measured</h2>
+      </div>
+      <p class="font-mono text-[11px] text-muted">github.com/kabirkalra07-maker</p>
+    </div>
+
+    <div class="mt-12 space-y-6">
+
+      <!-- PROJECT 1 -->
+      <article class="reveal rounded border border-edge bg-surface p-6 transition hover:border-amber/50 sm:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h3 class="font-display text-xl font-700 text-white sm:text-2xl">AI Playlist Generator</h3>
+            <p class="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-muted">Multi-agent generative AI system &middot; Spring 2026</p>
+          </div>
+          <span class="rounded-sm border border-amber/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-amber">3-agent pipeline</span>
+        </div>
+
+        <p class="mt-5 max-w-3xl text-[15px] leading-relaxed sm:text-base">
+          Preference Analyst, Track Curator, and Judge agents coordinating under the ReAct protocol with iteration
+          guardrails. I cut tool hallucination from 34% to 0% by switching the primary model and enforcing strict
+          tool-name constraints, and resolved 4 of 5 identified failure modes &mdash; including diversity collapse
+          and malformed JSON &mdash; across a 55-case LLM-as-a-Judge evaluation suite.
+        </p>
+
+        <div class="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded border border-edge bg-edge sm:grid-cols-4">
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">34% &rarr; 0%</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">Hallucination</p></div>
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">8.1/10</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">Judge score</p></div>
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">55</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">Eval cases</p></div>
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">$0.018</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">Cost / run</p></div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span class="font-mono text-[11px] text-muted">Python</span>
+          <span class="font-mono text-[11px] text-muted">Claude API</span>
+          <span class="font-mono text-[11px] text-muted">Spotify API</span>
+          <span class="font-mono text-[11px] text-muted">ReAct</span>
+          <span class="font-mono text-[11px] text-muted">Prompt engineering</span>
+        </div>
+
+        <a href="https://github.com/kabirkalra07-maker/ai-playlist-generator" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-amber transition hover:text-white">
+          View repository <span aria-hidden="true">&rarr;</span>
+        </a>
+      </article>
+
+      <!-- PROJECT 2 -->
+      <article class="reveal rounded border border-edge bg-surface p-6 transition hover:border-amber/50 sm:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h3 class="font-display text-xl font-700 text-white sm:text-2xl">Adaptive Math Tutor</h3>
+            <p class="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-muted">Reinforcement learning &middot; Spring 2026</p>
+          </div>
+          <span class="rounded-sm border border-amber/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-amber">Q-Learning &amp; SARSA</span>
+        </div>
+
+        <p class="mt-5 max-w-3xl text-[15px] leading-relaxed sm:text-base">
+          A 9-state MDP that sequences math questions to a student's skill level. I iterated the reward function
+          through three versions &mdash; from correctness-only to learning gain plus skill balance &mdash; to pull
+          agent behavior toward actual tutoring goals rather than score-chasing. Q-Learning reached a mean reward
+          of 20.19 against a 16.42 random baseline over 3,000 training episodes, outperforming both baselines.
+        </p>
+
+        <div class="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded border border-edge bg-edge sm:grid-cols-4">
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">20.19</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">Mean reward</p></div>
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">16.42</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">Random baseline</p></div>
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">3,000</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">Episodes</p></div>
+          <div class="bg-raised px-4 py-3"><p class="font-display text-lg font-700 text-amber">9</p><p class="font-mono text-[10px] uppercase tracking-wide text-muted">MDP states</p></div>
+        </div>
+
+        <p class="mt-5 font-mono text-[11px] text-muted">&epsilon;-greedy exploration &nbsp;&middot;&nbsp; &epsilon;=0.2 &nbsp;&middot;&nbsp; &alpha;=0.1 &nbsp;&middot;&nbsp; &gamma;=0.95</p>
+
+        <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span class="font-mono text-[11px] text-muted">Python</span>
+          <span class="font-mono text-[11px] text-muted">NumPy</span>
+          <span class="font-mono text-[11px] text-muted">Tabular RL</span>
+          <span class="font-mono text-[11px] text-muted">Reward design</span>
+        </div>
+
+        <a href="https://github.com/kabirkalra07-maker/RL-ADAPTIVE-MATH-TUTOR" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-amber transition hover:text-white">
+          View repository <span aria-hidden="true">&rarr;</span>
+        </a>
+      </article>
+
+      <!-- PROJECT 3 -->
+      <article class="reveal rounded border border-edge bg-surface p-6 transition hover:border-amber/50 sm:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h3 class="font-display text-xl font-700 text-white sm:text-2xl">Emberlight Isle</h3>
+            <p class="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-muted">Browser-based 3D game &middot; Personal project</p>
+          </div>
+          <span class="rounded-sm border border-amber/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-amber">Playable</span>
+        </div>
+
+        <p class="mt-5 max-w-3xl text-[15px] leading-relaxed sm:text-base">
+          A fully playable 3D game built in Three.js, with procedurally generated terrain, a day/night cycle, and
+          collectible mechanics. Taken through a structured testing and bug-fixing pass until it held together
+          start to finish &mdash; the closest thing I have to shipping software to real users.
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span class="font-mono text-[11px] text-muted">JavaScript</span>
+          <span class="font-mono text-[11px] text-muted">Three.js</span>
+          <span class="font-mono text-[11px] text-muted">WebGL</span>
+          <span class="font-mono text-[11px] text-muted">Procedural generation</span>
+        </div>
+
+        <!-- TODO: add Emberlight Isle repo + live demo links once that repo is up -->
+        <p class="mt-6 font-mono text-[11px] uppercase tracking-[0.1em] text-muted">Repository coming soon</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="border-t border-edge py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="reveal">
+      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-amber">Contact</p>
+      <h2 class="mt-4 font-display text-[clamp(2rem,7vw,4rem)] font-700 leading-[0.95] tracking-[-0.03em] text-white">
+        Let's talk.
+      </h2>
+      <p class="mt-6 max-w-lg text-lg leading-relaxed">
+        I'm in Washington, DC, looking for full-time analytics and data science roles, available immediately.
+        Email is the fastest way to reach me.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="mailto:kabirkalra07@gmail.com"
+           class="rounded-sm bg-amber px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-base transition hover:bg-white">kabirkalra07@gmail.com</a>
+        <a href="https://www.linkedin.com/in/kabir-kalra-b852b6211/" target="_blank" rel="noopener"
+           class="rounded-sm border border-edge px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-soft transition hover:border-amber hover:text-amber">LinkedIn</a>
+        <a href="https://github.com/kabirkalra07-maker" target="_blank" rel="noopener"
+           class="rounded-sm border border-edge px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-soft transition hover:border-amber hover:text-amber">GitHub</a>
+        <!-- Upload resume.pdf to this repo, or delete this button -->
+        <a href="resume.pdf"
+           class="rounded-sm border border-edge px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-soft transition hover:border-amber hover:text-amber">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-20 max-w-6xl border-t border-edge px-5 pt-6 sm:px-8">
+    <div class="flex flex-wrap justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+      <span>Kabir Kalra</span>
+      <span>Washington, DC</span>
+      <span>F-1 &middot; STEM OPT eligible</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
