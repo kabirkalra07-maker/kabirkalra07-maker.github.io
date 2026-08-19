@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kabir Kalra — Applied AI &amp; Data Science</title>
-<!-- build: v5 -->
+<!-- build: v6 -->
 <meta name="description" content="Kabir Kalra — M.S. Business Analytics &amp; Artificial Intelligence, Johns Hopkins Carey. Reinforcement learning agents, multi-agent LLM systems, and evaluation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,12 @@ tailwind.config = {
     mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
     -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
   }
-  .reveal{opacity:1;transform:none}
+  .reveal{opacity:1 !important;transform:none !important}
+  /* hard safety net: nothing on this page may be transparent */
+  body, body * { opacity:1 !important; }
+  body { color:#C8CFDD; }
+  article p, section p { color:#C8CFDD; }
+  h1,h2,h3 { color:#FFFFFF; }
   ::selection{background:#F5B841;color:#080B14}
 </style>
 </head>
@@ -234,7 +239,7 @@ tailwind.config = {
           <span class="rounded-sm border border-amber/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-amber">3-agent pipeline</span>
         </div>
 
-        <p class="mt-5 max-w-3xl text-[15px] leading-relaxed text-soft sm:text-base">
+        <p class="mt-5 max-w-3xl text-[15px] leading-relaxed sm:text-base" style="color:#C8CFDD;opacity:1;">
           Preference Analyst, Track Curator, and Judge agents coordinating under the ReAct protocol with iteration
           guardrails. I cut tool hallucination from 34% to 0% by switching the primary model and enforcing strict
           tool-name constraints, and resolved 4 of 5 identified failure modes &mdash; including diversity collapse
@@ -271,7 +276,7 @@ tailwind.config = {
           <span class="rounded-sm border border-amber/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-amber">Q-Learning &amp; SARSA</span>
         </div>
 
-        <p class="mt-5 max-w-3xl text-[15px] leading-relaxed text-soft sm:text-base">
+        <p class="mt-5 max-w-3xl text-[15px] leading-relaxed sm:text-base" style="color:#C8CFDD;opacity:1;">
           A 9-state MDP that sequences math questions to a student's skill level. I iterated the reward function
           through three versions &mdash; from correctness-only to learning gain plus skill balance &mdash; to pull
           agent behavior toward actual tutoring goals rather than score-chasing. Q-Learning reached a mean reward
