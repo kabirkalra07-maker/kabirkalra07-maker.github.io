@@ -106,23 +106,19 @@ tailwind.config = {
          class="rounded-sm border border-edge px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-soft transition hover:border-amber hover:text-amber">GitHub</a>
     </div>
 
-    <!-- headline metrics -->
-    <div class="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded border border-edge bg-edge sm:grid-cols-4">
+    <!-- focus strip: labelled, not bare numbers -->
+    <div class="mt-14 grid gap-px overflow-hidden rounded border border-edge bg-edge sm:grid-cols-3">
       <div class="bg-surface p-5">
-        <p class="font-display text-3xl font-700 text-amber">0%</p>
-        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Tool hallucination<br>down from 34%</p>
+        <h3 class="font-mono text-[11px] uppercase tracking-[0.14em] text-amber">Agentic systems</h3>
+        <p class="mt-2 text-sm leading-relaxed text-muted">Multi-agent pipelines on the Claude API, with ReAct reasoning and iteration guardrails.</p>
       </div>
       <div class="bg-surface p-5">
-        <p class="font-display text-3xl font-700 text-amber">8.1<span class="text-lg text-muted">/10</span></p>
-        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Mean judge score<br>55-case eval suite</p>
+        <h3 class="font-mono text-[11px] uppercase tracking-[0.14em] text-amber">Reinforcement learning</h3>
+        <p class="mt-2 text-sm leading-relaxed text-muted">MDP design and reward functions that express the actual goal, not a proxy for it.</p>
       </div>
       <div class="bg-surface p-5">
-        <p class="font-display text-3xl font-700 text-amber">$0.018</p>
-        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Cost per<br>agent run</p>
-      </div>
-      <div class="bg-surface p-5">
-        <p class="font-display text-3xl font-700 text-amber">~20%</p>
-        <p class="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-muted">Client engagement<br>growth, LA Sovereign</p>
+        <h3 class="font-mono text-[11px] uppercase tracking-[0.14em] text-amber">Evaluation</h3>
+        <p class="mt-2 text-sm leading-relaxed text-muted">LLM-as-a-Judge suites, red teaming, and cost tracking &mdash; so results can be checked.</p>
       </div>
     </div>
   </div>
